@@ -1,0 +1,392 @@
+/* =============================== */
+/* PALET & FONT UNTUK SCRAPBOOK */
+/* =============================== */
+:root {
+    --scrapbook-bg-color: #f0e6d6; 
+    --paper-color: #ffffff; 
+    --accent-pink: #ff69b4; 
+    --dark-text: #4a4a4a; 
+    --marker-color: #333333; 
+    --sparkle-color: #ffd700; 
+}
+
+body {
+    font-family: 'Arial', sans-serif; 
+    background-color: var(--scrapbook-bg-color); 
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMzMzMzMzMiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMCAyMGMtMi4wMDkgMC01LjM3MiAxLjI4OC02LjUgMi4yMjgtLjY5NS41OTctMS4xMjcgMS4yMzItMS41IDIuMDI4IDYuNzIzLjczIDUuNjczLTMuMzU0IDEuNSA2LjUgMi4yMjgtLjY5NSAyLjg3OC01LjQ1MyA2LjUtMS41IDQuOTU3LTcuMjIzIDIuMjYtMy4zNTQgMS41LTYuNS0yLjI5Mi02LjcwOC01LjY5NS0zLjcyMy02LjUtMS41IDMuOTI3IDIuMDgzIDIuODc4IDUuNDUzIDYuNSAxLjUtLjczLS43NzItMS42ODMtMS4yNDktMi41LS41MTYtMi44ODctMi45NzgtMS44MDgtMi44NzgtMi4yMjgtMy41LTIuNjU0LTQuMDQ1LTUuNzg2LTMuOTI0LTYuNS0xLjUtLjcwOC0uNjk1LTIuOTc4LTEuODA4LTMuNS0uNjg2LTUuMzg4LTYuNzIzLTMuMzU0LTYuNS0xLjUtLjY5NS0uNzcxLTIuMDgzLTEuNjgzLTIuNS0uNTUyLTcuMDY3LTYuNzIzLTMuMzU0LTUuNzg2LTEuNS02LjUtLjcwOC0uNjk1LTEuMjQ5LTIuMDgzLTEuNS0uNjAyLTUuNDU2LTQuOTU3LTcuMjIzLTcuNS0xLjUtLjY5NS0uNzcxLTEuNjgzLTEuMjQ5LTIuNS0uNjAyIDAtNi43MjMtLjczLTMuMzU0LzJaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0IDQpIi8+PC9nPg0KPC9zdmc+'); 
+    background-repeat: repeat;
+    color: var(--dark-text);
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    line-height: 1.6;
+    overflow-x: hidden; 
+}
+
+/* Elemen untuk menyembunyikan konten */
+.hidden {
+    display: none !important; 
+}
+
+/* Container utama untuk halaman scrapbook */
+.scrapbook-page {
+    max-width: 900px; 
+    margin: 30px auto; 
+    padding: 40px;
+    background-color: var(--paper-color);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); 
+    border-radius: 8px;
+    position: relative; 
+    overflow: hidden; 
+}
+
+/* Font Styling */
+.marker-text {
+    font-family: 'Permanent Marker', cursive;
+    color: var(--marker-color);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.handwriting-text {
+    font-family: 'Satisfy', cursive;
+    font-size: 1.5em;
+    color: var(--dark-text);
+}
+
+.scrapbook-title {
+    font-size: 3em;
+    margin-bottom: 40px;
+    border-bottom: 4px dashed var(--accent-pink);
+    padding-bottom: 15px;
+}
+
+/* =============================== */
+/* TAMPILAN AWAL (OVERLAY) & HATI MELAYANG */
+/* =============================== */
+
+#surprise-overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0; 
+    border-radius: 0; 
+    box-shadow: none; 
+    
+    background-color: var(--scrapbook-bg-color); 
+    background-repeat: repeat;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; 
+    
+    padding: 50px 20px; 
+    box-sizing: border-box; 
+    overflow: hidden; 
+}
+
+/* CONTAINER HATI */
+.floating-hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    z-index: 5; 
+}
+
+/* STYLING INDIVIDUAL HATI */
+.floating-heart {
+    position: absolute;
+    color: var(--accent-pink); 
+    font-size: 2.5em; 
+    pointer-events: none; 
+    opacity: 0;
+    z-index: 1; 
+    animation: floatHeart 10s ease-in forwards; 
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7); 
+}
+
+/* Judul Animasi */
+.animated-title {
+    font-size: 3.5em; 
+    color: var(--accent-pink); 
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3), 0 0 15px var(--sparkle-color); 
+    animation: bounceIn 1s ease-out, pulseText 2s infinite alternate; 
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Animasi untuk teks dan tombol */
+.animated-text {
+    font-size: 1.5em;
+    animation: fadeIn 1.5s ease-out forwards;
+    animation-delay: 0.5s;
+    opacity: 0; 
+    position: relative;
+    z-index: 10;
+}
+
+/* TOMBOL PENTING: z-index dipastikan tinggi */
+.animated-button {
+    animation: fadeInScale 1.5s ease-out forwards;
+    animation-delay: 1s;
+    opacity: 0;
+    transform: scale(0.8);
+    position: relative;
+    z-index: 100; 
+}
+
+
+/* Tombol dengan Efek Tape (taped-button) */
+.taped-button {
+    background-color: var(--accent-pink);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, background-color 0.2s;
+    margin: 20px;
+    text-decoration: none; 
+    display: inline-block;
+    position: relative;
+}
+.taped-button:hover {
+    background-color: #e04a91; 
+    transform: scale(1.03);
+}
+.taped-button::before, .taped-button::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    background-color: rgba(255, 192, 203, 0.7); 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.taped-button::before {
+    top: -10px;
+    left: 10px;
+    transform: rotate(-10deg);
+}
+.taped-button::after {
+    bottom: -10px;
+    right: 10px;
+    transform: rotate(8deg);
+}
+
+
+/* =============================== */
+/* KONTEN UTAMA & GALLERY LAYOUT (FLEXBOX) */
+/* =============================== */
+
+/* Layout Berdampingan (Halaman Ucapan dan Item Galeri) */
+.scrapbook-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Elemen dimulai dari atas */
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+/* Galeri: Untuk tata letak bergantian (teks/foto) */
+.scrapbook-section.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+/* KONTEN FOTO */
+.scrapbook-item.item-foto {
+    flex-basis: 300px; /* Lebar dasar untuk item foto */
+    flex-shrink: 0; 
+    position: relative; 
+    margin: 0;
+}
+
+/* KONTEN TEKS */
+.scrapbook-text-area.item-teks {
+    flex-basis: 50%; /* Teks mengambil 50% ruang */
+    min-width: 350px; 
+    text-align: left;
+    margin: 0; 
+    padding: 20px;
+    background-color: var(--paper-color);
+    border: 1px dashed #ccc; 
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    transform: rotate(2deg); 
+}
+.scrapbook-text-area.item-teks h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+.scrapbook-text-area.item-teks p {
+    font-size: 1.3em;
+}
+
+/* Efek Mesin Ketik - Default Desktop */
+#typewriter-text {
+    border-right: .15em solid var(--accent-pink); 
+    white-space: nowrap; /* Teks tidak pindah baris di desktop */
+    overflow: hidden; 
+    animation: typing 3s steps(30, end), blink-caret .75s step-end infinite;
+    max-width: 100%;
+    margin-bottom: 15px;
+    text-align: left; 
+}
+
+/* Teks Greeting Tambahan */
+.visible-text {
+    opacity: 1;
+    transition: opacity 1s ease 0.5s; 
+    text-align: left; 
+}
+
+/* =============================== */
+/* EFEK POLAROID */
+/* =============================== */
+
+.polaroid-effect {
+    background-color: var(--paper-color);
+    padding: 10px 10px 35px 10px; 
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    transform: rotate(3deg); 
+    transition: transform 0.3s;
+    position: relative;
+    border: 1px solid #ccc;
+    z-index: 10;
+}
+
+.polaroid-effect:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.polaroid-effect img {
+    display: block;
+    width: 250px; 
+    height: auto;
+    object-fit: cover;
+}
+
+.polaroid-caption {
+    font-family: 'Permanent Marker', cursive;
+    text-align: center;
+    color: var(--dark-text);
+    margin-top: 10px;
+    font-size: 0.9em;
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+}
+
+/* Rotasi acak untuk polaroid */
+.rotate-left { transform: rotate(-5deg); }
+.rotate-right { transform: rotate(5deg); }
+
+
+/* =============================== */
+/* LIGHTBOX MODAL (POP-UP FOTO) */
+/* =============================== */
+/* ... (Styling lightbox modal tetap sama) ... */
+.hidden-modal { display: none; }
+#lightbox-modal { position: fixed; z-index: 2000; padding-top: 60px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); box-sizing: border-box; }
+.modal-content-wrapper { margin: auto; display: block; width: 90%; max-width: 900px; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 5px 15px rgba(255, 255, 255, 0.5); animation: zoomIn 0.3s ease-out; }
+#modal-image { width: 100%; height: auto; display: block; margin-bottom: 10px; }
+#modal-caption { text-align: center; font-size: 1.5em; padding: 10px 0; }
+.close-btn { position: absolute; top: 15px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; z-index: 2001; }
+.close-btn:hover, .close-btn:focus { color: #bbb; text-decoration: none; }
+.clickable-photo { cursor: pointer; transition: box-shadow 0.2s; }
+.clickable-photo:active { box-shadow: 0 0 5px var(--accent-pink); }
+
+
+/* =============================== */
+/* KEYFRAMES */
+/* =============================== */
+/* ... (Semua keyframes tetap sama) ... */
+@keyframes floatHeart { 0% { transform: translate(0, 0) scale(0.5); opacity: 0; } 10% { opacity: 0.9; transform: translate(0, -20px) scale(1); } 100% { transform: translate(var(--translateX), var(--translateY)) scale(var(--scale)); opacity: 0; } }
+@keyframes bounceIn { 0%, 20%, 40%, 60%, 80%, 100% { transition-timing-function: cubic-bezier(0.215, .61, .355, 1); } 0% { opacity: 0; transform: scale3d(.3, .3, .3); } 60% { opacity: 1; transform: scale3d(1.03, 1.03, 1.03); } 100% { opacity: 1; transform: scale3d(1, 1, 1); } }
+@keyframes pulseText { from { text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3), 0 0 10px var(--sparkle-color); } to { text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5), 0 0 20px var(--sparkle-color); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInScale { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+@keyframes float { 0% { transform: translatey(0px) rotate(1deg); } 50% { transform: translatey(-10px) rotate(-1deg); } 100% { transform: translatey(0px) rotate(1deg); } }
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--accent-pink); } }
+@keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+
+/* ========================================= */
+/* MEDIA QUERIES UNTUK KOMPATIBILITAS ANDROID */
+/* ========================================= */
+
+@media (max-width: 768px) {
+    .scrapbook-page {
+        margin: 15px;
+        padding: 20px;
+    }
+    .scrapbook-title {
+        font-size: 2.5em;
+    }
+    .animated-title {
+        font-size: 2.5em;
+    }
+    
+    /* JUDUL TYPEWRITER (PERBAIKAN FOKUS UTAMA) */
+    #typewriter-text {
+        font-size: 1.5em; 
+        white-space: normal !important; /* IZINKAN PINDAH BARIS DI PONSEL */
+        max-width: 90%; 
+        margin: 0 auto 15px auto;
+        text-align: center; /* Pusatkan saat pindah baris */
+        /* Nonaktifkan animasi typing di ponsel untuk mencegah overflow (JS akan memunculkan teks) */
+        animation: none !important; 
+        width: auto !important;
+        border-right: none !important;
+        height: auto; /* Izinkan tingginya menyesuaikan baris */
+    }
+    
+    /* Tumpuk semua di ponsel */
+    .scrapbook-section,
+    .scrapbook-section.reverse-layout {
+        flex-direction: column; 
+        gap: 20px;
+        align-items: center;
+    }
+    
+    /* Layout teks/foto di ponsel */
+    .scrapbook-item.item-foto {
+        order: 1; 
+        flex-basis: auto;
+    }
+    .scrapbook-text-area.item-teks {
+        order: 2; 
+        flex-basis: auto;
+        min-width: 100%;
+        transform: rotate(0deg); 
+        text-align: center;
+    }
+    .polaroid-effect img {
+        width: 180px; 
+    }
+    .floating-heart {
+        font-size: 1.5em;
+    }
+    
+    /* Modal di Ponsel */
+    .modal-content-wrapper {
+        padding-top: 15px;
+        width: 95%;
+    }
+    .close-btn {
+        top: 5px;
+        right: 15px;
+        font-size: 30px;
+    }
+}

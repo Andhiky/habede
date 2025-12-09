@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrapbook Ulang Tahunku! (One Page)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <audio id="bgm" loop>
+        <source src="sound/hbd.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+    <audio id="confetti-sfx">
+        <source src="sound/sound1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="ribbon-top-left"></div>
+
+    <div id="surprise-overlay" class="scrapbook-page">
+        <div id="hearts-container" class="floating-hearts-container"></div> 
+        
+        <h1 class="marker-text animated-title">SELAMAT ULANG TAHUNN SENGG 🥳🎉</h1>
+        <p class="animated-text">“Selamat ulang tahun sengggggg. Semoga kamu makin pinter, makin lucu, dan makin sadar kalau aku ini paket lengkap yang nggak ada duanya. mwehehehe”</p>
+        
+        <button onclick="revealPage()" class="taped-button animated-button">Buka Scrapbook</button>
+    </div>
+
+    <div id="main-content" class="hidden scrapbook-page">
+        <h1 class="scrapbook-title marker-text">Habedeee Cantikk</h1>
+        
+        <section id="greeting" class="scrapbook-section">
+            <div class="scrapbook-item item-foto">
+                <div class="polaroid-effect">
+                    <img src="images/contoh.jpg" alt="Foto Kartun Lucu Anda">
+                    <p class="polaroid-caption"></p>
+                </div>
+            </div>
+            
+            <div class="scrapbook-text-area item-teks">
+                <h2 id="typewriter-text" class="marker-text"></h2> 
+                <p id="sub-greeting" class="hidden-text handwriting-text">Hari ini adalah hari istimewa untuk jiwa yang paling aku cintai di semesta ini. <br>Geser ke bawah untuk melanjutkan perjalanan kejutan kita!</p>
+            </div>
+        </section>
+        
+        <section class="scrapbook-section" style="justify-content: center; margin-bottom: 80px;">
+            <a href="#gallery-section" id="to-gallery-btn" class="taped-button">Lanjut ke Perjalanan Kita!</a>
+        </section>
+        
+        
+        <div id="gallery-section">
+            <h1 class="scrapbook-title marker-text">📸 Kilasan Cerita Kita 📸</h1>
+            
+            <main id="photo-gallery">
+                
+                <section class="scrapbook-section reverse-layout">
+                    <div class="scrapbook-text-area item-teks">
+                        <h2 class="marker-text">Januari 2022: Awal Mula Kekonyolan</h2>
+                        <p class="handwriting-text">Ini adalah foto pertama yang kita ambil bersama. Aku ingat kamu mencoba menyembunyikan senyummu. Sejak saat itu, aku tahu ini akan menjadi kisah yang panjang dan konyol! Aku menyematkan klip kertas ini agar momennya tak pernah hilang.</p>
+                    </div>
+                    
+                    <div class="scrapbook-item item-foto">
+                        <div class="polaroid-effect rotate-left clickable-photo" data-full-img="images/contoh.jpg" data-caption="Awal dari segalanya!">
+                            <img src="images/contoh.jpg" alt="Foto Awal Kenalan">
+                            <p class="polaroid-caption"></p>
+                        </div>
+                        <span class="paper-clip"></span>
+                    </div>
+                </section>
+
+                <section class="scrapbook-section">
+                    <div class="scrapbook-item item-foto">
+                        <div class="polaroid-effect rotate-right clickable-photo" data-full-img="images/contoh.jpg" data-caption="Liburan paling kacau tapi seru.">
+                            <img src="images/contoh.jpg" alt="Foto Liburan Lucu">
+                            <p class="polaroid-caption">Liburan paling kacau tapi seru.</p>
+                        </div>
+                        <span class="washi-tape-top"></span>
+                    </div>
+
+                    <div class="scrapbook-text-area item-teks">
+                        <h2 class="marker-text">Mei 2023: Liburan Paling Berantakan</h2>
+                        <p class="handwriting-text">Ingat saat kita salah naik kereta dan berakhir makan di warung pinggir jalan? Itu adalah momen yang aku sadari, bahkan dalam kekacauan, kamu adalah pasangan terbaik. Aku merekatkannya dengan pita biar kenangan ini selalu rapi!</p>
+                    </div>
+                </section>
+                
+                <section class="scrapbook-section reverse-layout">
+                    <div class="scrapbook-text-area item-teks">
+                        <h2 class="marker-text">Januari 2022: Awal Mula Kekonyolan</h2>
+                        <p class="handwriting-text">Ini adalah foto pertama yang kita ambil bersama. Aku ingat kamu mencoba menyembunyikan senyummu. Sejak saat itu, aku tahu ini akan menjadi kisah yang panjang dan konyol! Aku menyematkan klip kertas ini agar momennya tak pernah hilang.</p>
+                    </div>
+                    
+                    <div class="scrapbook-item item-foto">
+                        <div class="polaroid-effect rotate-left clickable-photo" data-full-img="images/contoh.jpg" data-caption="Awal dari segalanya!">
+                            <img src="images/contoh.jpg" alt="Foto Awal Kenalan">
+                            <p class="polaroid-caption"></p>
+                        </div>
+                        <span class="paper-clip"></span>
+                    </div>
+                </section>
+                
+
+            </main>
+        </div>
+        
+        <section class="scrapbook-section" style="justify-content: center; margin-top: 50px; margin-bottom: 80px;">
+            <a href="#final-section" id="to-ending-btn" class="taped-button">Lanjut ke Pesan Terakhirku!</a>
+        </section>
+
+
+        <div id="final-section">
+            <h1 class="scrapbook-title marker-text">Untuk Masa Depan Kita...</h1>
+            <main id="final-message-content" class="scrapbook-section" style="flex-direction: column; align-items: center;">
+                <div class="love-letter-scrapbook">
+                    <p class="handwriting-text">Sayangku, setelah melihat semua kenangan itu, aku hanya ingin bilang...</p>
+                    <p class="handwriting-text large-text" style="font-size: 1.8em; margin: 20px 0;">"Terima kasih sudah menjadi rumah yang paling nyaman dan menjadi alasan aku selalu tersenyum. Mari kita ciptakan lebih banyak lagi kenangan konyol dan indah. Aku mencintaimu, lebih dari kata-kata ini bisa sampaikan. Happy Birthday, my love."</p>
+                    <p class="handwriting-text from-text">Dari: Pasanganmu yang paling beruntung.</p>
+                </div>
+
+                   <section id="next-step" class="scrapbook-section">
+       <a href="ending.html" class="taped-button">Lanjut ke Pesan Terakhirku!</a>
+   </section>
+                
+            </main>
+        </div>
+    </div>
+    
+    <div id="lightbox-modal" class="hidden-modal">
+        <span class="close-btn">&times;</span>
+        <div class="modal-content-wrapper">
+            <img id="modal-image" src="" alt="Foto Kenangan">
+            <p id="modal-caption" class="handwriting-text"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script> 
+</body>
+</html>
